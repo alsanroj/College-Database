@@ -1,80 +1,42 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask,render_template,request,jsonify
+import json
+import time
 import mysql.connector
 
 # MySQL Credentials
-conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="01062006",
-    database="college_db")
-
-   #table="students_login"
-   #     = "staffs_login"
-   #     = "students_signup"
-   #     = "staffs_signup"
-
-cursor = conn.cursor()
+try:
+    conn = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="01062006",
+        database="college_db"
+    )
+    cursor = conn.cursor()
+except mysql.connector.Error as err:
+    print(f"Error: {err}")
+    conn = None
+    cursor = None
 
 app = Flask(__name__)
 
 # Default
 @app.route('/')
 def index():
-    return render_template('login.html')
+    return render_template('students_login.html')
 
-@app.route('/signin', methods=['POST'])
-def signin_user():
-    data = request.json
-    user_type = data.get('type')  # student or staff
-    email = data.get('email') if user_type == 'student' else data.get('username')  
-    password = data.get('password')
+@app.route('/staffs_login.html')
+def staffs_login():
+    return render_template('staffs_login.html')
 
+@app.route('/staffs_signup.html')
+def staffs_signup():
+    return render_template('staffs_signup.html')
 
-#NEEDED TO BE CHANGED
-    cursor.execute("INSERT INTO student_login (email, password) VALUES (%s, %s)", (email, password))
-    conn.commit()
-    '''user = cursor.fetchone()
-    print(user)
-    if user:
-        return jsonify({"message": "Sign-in successful!"})
-    else:
-        return jsonify({"message": "Invalid credentials"}), 401'''
-
-# Signup
-@app.route('/signup.html')
-def signup():
-    return render_template('signup.html')
-
-@app.route('/signup.html', methods=['POST'])
-def signup_user():
-    data = request.json
-    user_type = data.get('type')
-    roll_no = data.get('Roll No')
-    reg_no = data.get('Reg No')
-    signup_email = data.get('Email')
-    signup_password = data.get('Password')
-
-#NEEDED TO BE CHANGED
-    cursor.execute("INSERT INTO student_signup (roll_no, reg_no, email, password) VALUES (%s, %s, %s, %s)", (roll_no, reg_no, signup_email, signup_password))
-    conn.commit()
+@app.route('/students_login.html')
+def students_login():
+    return render_template('students_login.html')
 
 
-# Login
-@app.route('/login.html')
-def login():
-    return render_template('login.html')
-
-@app.route('/login', methods=['POST'])
-def login_user():
-    data = request.json
-    user_type = data.get('type')
-    signin_email = data.get('email')
-    signin_password = data.get('password')
-    
-    cursor.execute("INSERT INTO students_login (email, password) VALUES (%s, %s)", (user_type,signin_email, signin_password))
-    conn.commit()
-    
-    return jsonify({"message": "Sign-in successful!"})
 
 
 
