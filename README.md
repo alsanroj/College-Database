@@ -93,6 +93,6 @@ Navigate to: http://127.0.0.1:5000
 
 ---
 
-## Acknowledgements
+## 📜 Acknowledgements
 
 Inspired by traditional university portals and built with simplicity and clarity in mind for better DBMS understanding.
