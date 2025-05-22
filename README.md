@@ -6,8 +6,8 @@ A simple, responsive web application built using **Flask** for backend and **HTM
 
 ## 👥 Contributors
 
-- Anish T
-- Alsan Roj A
+- [Anish T](https://www.linkedin.com/in/anish-t)
+- [Alsan Roj A](https://www.linkedin.com/in/alsan-roj-a-a01116295)
 
 ---
 
