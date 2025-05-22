@@ -4,7 +4,9 @@
   padding: 0;
   font-family: "Segoe UI", sans-serif;
 }
-
+span{
+  color: red;
+}
 /* Navbar Styles */
 nav {
   width: 100%;
