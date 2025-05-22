@@ -1,6 +1,6 @@
 ## 🏫 Student & Staff Portal – DBMS Mini Project
 
-A simple, responsive web application built using **Flask** for backend and **HTML/CSS** for frontend, designed for managing student and staff sign-up and login operations. Developed as part of a Database Management System (DBMS) project.
+A simple, responsive web application built using **Flask** for backend and **HTML/CSS/JavaScript** for frontend, designed for managing student and staff sign-up and login operations. Developed as part of a Database Management System (DBMS) project.
 
 ---
 
@@ -8,6 +8,27 @@ A simple, responsive web application built using **Flask** for backend and **HTM
 
 - Anish T
 - Alsan Roj A
+
+---
+
+## 💻 Softwares Used
+
+- `Frontend`
+  - `HTML`
+  - `CSS`
+  - `JavaScript`
+
+- `Backend`
+  - `Python`
+
+- `Database`
+  - `MongoDB`
+
+- `Data's`
+  - `JSON`
+
+- `API's`
+  - `Cloud Flare` - Captcha:
 
 ---
 
