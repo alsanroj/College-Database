@@ -39,6 +39,8 @@ A simple, responsive web application built using **Flask** for backend and **HTM
   - `staffs_signup.html`
   - `students_login.html`
   - `staffs_login.html`
+  - `students_dashboard.html`
+  - `staffs_dashboard.html`
 - `static/`
   - `css/` – Stylesheets:
     - `Home.css`
