@@ -32,6 +32,7 @@ A simple, responsive web application built using **Flask** for backend and **HTM
 ## 📂 Project Structure
 
 - `backend.py` – Main Flask backend with route handling.
+- `college_db.sql` - Database Schema.
 - `templates/` – HTML templates:
   - `Home.html`
   - `students_signup.html`
