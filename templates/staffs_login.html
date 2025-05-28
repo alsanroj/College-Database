@@ -29,8 +29,8 @@
             <a href="staffs_login.html"><span>Staff Login</span></a>
           </li>
           <li><a href="students_login.html">Student Login</a></li>
-          <li><a href="students_signup.html">Student Sign In</a></li>
-          <li><a href="staffs_signup.html">Staff Sign In</a></li>
+          <li><a href="students_signup.html">Student Sign Up</a></li>
+          <li><a href="staffs_signup.html">Staff Sign Up</a></li>
         </ul>
       </nav>
     </header>
@@ -43,13 +43,13 @@
       <!-- Login Form -->
       <div class="login-container">
         <h2>Staff Login</h2>
-        <form>
+        <form method="POST">
           <div class="input-group">
-            <input type="text" id="username" placeholder=" " required />
+            <input type="text" id="username" name="username" placeholder=" " required />
             <label for="username">Username</label>
           </div>
           <div class="input-group">
-            <input type="password" id="password" placeholder=" " required />
+            <input type="password" id="password" name="password" placeholder=" " required />
             <label for="password">Password</label>
           </div>
           <div class="group">

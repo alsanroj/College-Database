@@ -40,34 +40,34 @@
       <!-- Login Form -->
       <div class="login-container">
         <h2>Staff Sign Up</h2>
-        <form>
+        <form method="post">
           <div class="big-group">
             <div class="input-group">
-              <input type="text" id="firstName" placeholder=" " required />
-              <label for="fName">Firstname</label>
+              <input type="text" id="firstName" name="staff_fName" placeholder=" " required />
+              <label for="firstName">Firstname</label>
             </div>
             <div class="input-group">
-              <input type="text" id="lastName" placeholder=" " required />
-              <label for="lName">Lastname</label>
+              <input type="text" id="lastName" name="staff_lName" placeholder=" " required />
+              <label for="lastName">Lastname</label>
             </div>
           </div>
           <div class="big-group">
             <div class="input-group">
-              <input type="email" id="eMail" placeholder=" " required />
-              <label for="email">E-Mail</label>
+              <input type="email" id="eMail" name="staff_email" placeholder=" " required />
+              <label for="eMail">E-Mail</label>
             </div>
             <div class="input-group">
-              <input type="tel" id="mobileNumber" placeholder=" " required />
-              <label for="Mnumber">Mobile Number</label>
+              <input type="tel" id="mobileNumber" name="staff_phNumber" placeholder=" " required />
+              <label for="mobileNumber">Mobile Number</label>
             </div>
           </div>
           <div class="big-group">
             <div class="input-group">
-              <input type="password" id="rePassword" placeholder=" " required />
-              <label for="Password">Password</label>
+              <input type="password" id="password" name="staff_password" placeholder=" " required />
+              <label for="password">Password</label>
             </div>
             <div class="input-group">
-              <input type="password" id="password" placeholder=" " required />
+              <input type="password" id="rePassword" name="staff_rePassword" placeholder=" " required />
               <label for="rePassword">Re-Enter Password</label>
             </div>
           </div>
