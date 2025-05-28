@@ -22,10 +22,7 @@ A simple, responsive web application built using **Flask** for backend and **HTM
   - `Python`
 
 - `Database`
-  - `MongoDB`
-
-- `Data's`
-  - `JSON`
+  - `MySQL`
 
 - `API's`
   - `Cloud Flare` - Captcha:
@@ -57,7 +54,7 @@ A simple, responsive web application built using **Flask** for backend and **HTM
 
 ## 🚀 How to Run
 
-### 1. Clone the Repository
+### 1. Clone the Repository (Terminal)
  
 ```bash
 git clone https://github.com/alsanroj/College-Database.git
@@ -67,7 +64,7 @@ cd College-Database
 ### 2. Install Requirements (Terminal)
 
 ```bash
-pip install flask
+pip install flask pymysql cryptography
 ```
 
 ### 3. Run the Application (Terminal)
@@ -77,7 +74,14 @@ python backend.py
 ```
 
 ### 4. Open in Browser
-Navigate to: http://127.0.0.1:5000
+Navigate to: 
+```bash
+http://127.0.0.1:5000
+```
+(OR)
+```bash
+http://localhost:5000
+```
 
 ---
 
