@@ -1,7 +1,6 @@
 from flask import Flask,render_template,request,jsonify
 import pymysql
 import json
-import time
 
 
 app = Flask(__name__)
@@ -58,13 +57,16 @@ def staffs_signup():
         staff_phonenumber = request.form.get('staff_phNumber')
         staff_password = request.form.get('staff_password')
         staff_repassword = request.form.get('staff_rePassword')
+        #Checks for the password and re-password match
         if staff_password != staff_repassword:
             error = "Passwords do not match"
             return render_template('staffs_signup.html', error=error)
+        #Checks for email duplicate
         cursor.execute("SELECT * FROM staffs WHERE email=%s", (staff_email,))
         if cursor.fetchone():
             error = "Email already registered"
             return render_template('staffs_signup.html', error=error)
+        #Inserts the new user (STAFF) into the database
         cursor.execute(
             "INSERT INTO staffs (first_name, last_name, email, ph_number, password) VALUES (%s, %s, %s, %s, %s)",
             (staff_firstname, staff_lastname, staff_email, staff_phonenumber, staff_password)
@@ -111,13 +113,16 @@ def students_signup():
         student_phonenumber = request.form.get('student_phNumber')
         student_password = request.form.get('student_password')
         student_repassword = request.form.get('student_rePassword')
+        #Checks for the password and re-password match
         if student_password != student_repassword:
             error = "Passwords do not match"
             return render_template('students_signup.html', error=error)
+        #Checks for email duplicate
         cursor.execute("SELECT * FROM students WHERE email=%s", (student_email,))
         if cursor.fetchone():
             error = "Email already registered"
             return render_template('students_signup.html', error=error)
+        #Inserts the new user (STUDENT) into the database
         cursor.execute(
             "INSERT INTO students (first_name, last_name, email, ph_number, password) VALUES (%s, %s, %s, %s, %s)",
             (student_firstname, student_lastname, student_email, student_phonenumber, student_password)

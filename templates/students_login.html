@@ -40,6 +40,9 @@
       <!-- Login Form -->
       <div class="login-container">
         <h2>Student Login</h2>
+        {% if error %}
+          <div style="color: red; margin-bottom: 10px;">{{ error }}</div>
+        {% endif %}
         <form method="POST">
           <div class="input-group">
             <input type="text" id="username" name="username" placeholder=" " required />

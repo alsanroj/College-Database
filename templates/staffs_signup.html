@@ -40,6 +40,9 @@
       <!-- Login Form -->
       <div class="login-container">
         <h2>Staff Sign Up</h2>
+        {% if error %}
+          <div style="color: red; margin-bottom: 10px;">{{ error }}</div>
+        {% endif %}
         <form method="post">
           <div class="big-group">
             <div class="input-group">
