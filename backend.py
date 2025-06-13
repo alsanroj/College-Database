@@ -1,15 +1,17 @@
 from flask import Flask,render_template,request,jsonify
 import pymysql
 import json
+import time
 
 
 app = Flask(__name__)
 
 # Database connection
 database = pymysql.connect(
-    host="localhost",
+    host="sql-db",
+    port=3306,
     user="root",
-    password="01062006",
+    password="sjce123",
     database="college_db"
 )
 
@@ -138,7 +140,5 @@ def students_signup():
             return render_template('students_login.html', error=error)
     return render_template('students_signup.html')
 
-
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
