@@ -1,11 +1,11 @@
-from flask import Flask,render_template,request,jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 import pymysql
 import json
+import os
 
 
 app = Flask(__name__)
-
-# Database connection
+app.secret_key = 'your_random_secret_key_here'
 database = pymysql.connect(
     host="localhost",
     user="root",
@@ -96,7 +96,9 @@ def students_login():
         student = cursor.fetchone()
         print(student)
         if student:
-            return render_template('students_dashboard.html', student=student)
+            session['student_logged_in'] = True  # Set session variable
+            session['student_roll_no'] = username  # Optionally store roll_no
+            return redirect(url_for('students_dashboard'))
         else:
             error = "Invalid username or password"
             return render_template('students_login.html', error=error)
@@ -132,12 +134,21 @@ def students_signup():
         student = cursor.fetchone()
         print(student)
         if student:
-            return render_template('students_dashboard.html', student=student)
+            session['student_logged_in'] = True
+            session['student_roll_no'] = student[1]  # Adjust index as needed
+            return redirect(url_for('students_dashboard'))
         else:
             error = "An error occurred during registration"
             return render_template('students_login.html', error=error)
     return render_template('students_signup.html')
 
+
+# Students Dashboard
+@app.route('/students_dashboard.html', methods=['GET', 'POST'])
+def students_dashboard():
+    if not session.get('student_logged_in'):
+        return redirect(url_for('students_login'))
+    return render_template('students_dashboard.html')
 
 
 if __name__ == '__main__':
