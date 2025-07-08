@@ -78,7 +78,7 @@
         <!-- Main Content with Tabs -->
 <div class="col-md-9 p-4">
         <h2>User Information Form</h2>
-        <form method="post" action="/submit">
+        <form method="post">
           <div class="mb-3">
             <label class="form-label" for="fullName"><i class="bi bi-person-fill text-danger"></i> Full Name</label>
             <input type="text" class="form-control" id="fullName" name="full_name" placeholder="Enter full name" required>
@@ -110,13 +110,16 @@
           </div>
           <div class="mb-3">
             <label class="form-label"><i class="bi bi-upload text-danger"></i> Upload File</label>
-            <input type="file" class="form-control" name="file_upload">
+            <input type="file" class="form-control" name="file_upload" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
           </div>
           <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
     </div>
   </div>
+  {% if message %}
+  <div class="alert alert-success">{{ message }}</div>
+{% endif %}
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

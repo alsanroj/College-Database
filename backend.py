@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for, s
 import pymysql
 import json
 import os
+import time
 
 
 app = Flask(__name__)
@@ -148,7 +149,25 @@ def students_signup():
 def students_dashboard():
     if not session.get('student_logged_in'):
         return redirect(url_for('students_login'))
+    if request.method == 'POST':
+        student_fullname = request.form.get('full_name')
+        student_email = request.form.get('email')
+        student_phone_number = request.form.get('phone')
+        student_DOB = request.form.get('dob')
+        student_gender = request.form.get('gender')
+        student_address = request.form.get('address')
+        
+        cursor.execute(
+            "INSERT INTO students_dashboard_details (name, gender, mobile_no, email, dob, address) VALUES (%s, %s, %s, %s, %s, %s)",
+            (student_fullname, student_gender, student_phone_number, student_email, student_DOB, student_address)
+        )
+        database.commit()
+
     return render_template('students_dashboard.html')
+
+@app.route('/submit')
+def submit():
+    render_template('Home.html')
 
 
 if __name__ == '__main__':
