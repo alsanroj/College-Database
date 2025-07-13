@@ -3,6 +3,7 @@ import pymysql
 import json
 import os
 import time
+import re
 
 
 app = Flask(__name__)
@@ -116,6 +117,12 @@ def students_signup():
         student_phonenumber = request.form.get('student_phNumber')
         student_password = request.form.get('student_password')
         student_repassword = request.form.get('student_rePassword')
+        student_rollno = request.form.get('student_rollNo')  # Make sure your form has this field
+
+        if not student_rollno or not re.match(r'^23EE139[A-Z]{2}\d+$', student_rollno):
+            error = "Roll number must be in this \"25ZZ999\" desired format - two uppercase alphabets and digits."
+            return render_template('students_signup.html', error=error)
+
         #Checks for the password and re-password match
         if student_password != student_repassword:
             error = "Passwords do not match"
@@ -127,8 +134,8 @@ def students_signup():
             return render_template('students_signup.html', error=error)
         #Inserts the new user (STUDENT) into the database
         cursor.execute(
-            "INSERT INTO students (first_name, last_name, email, ph_number, password) VALUES (%s, %s, %s, %s, %s)",
-            (student_firstname, student_lastname, student_email, student_phonenumber, student_password)
+            "INSERT INTO students (roll_no, first_name, last_name, email, ph_number, password) VALUES (%s, %s, %s, %s, %s, %s)",
+            (student_rollno, student_firstname, student_lastname, student_email, student_phonenumber, student_password)
         )
         database.commit()
         cursor.execute("SELECT * FROM students WHERE email=%s", (student_email,))
@@ -136,7 +143,7 @@ def students_signup():
         print(student)
         if student:
             session['student_logged_in'] = True
-            session['student_roll_no'] = student[1]  # Adjust index as needed
+            session['student_roll_no'] = student_rollno
             return redirect(url_for('students_dashboard'))
         else:
             error = "An error occurred during registration"
