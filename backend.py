@@ -37,7 +37,7 @@ def staffs_login():
         if not username or not password:
             error = "Username and password are required"
             return render_template('staffs_login.html', error=error)
-        cursor.execute("SELECT * FROM staffs WHERE roll_no=%s AND password=%s", (username, password))
+        cursor.execute("SELECT * FROM staffs WHERE BINARY roll_no=%s AND password=%s", (username, password))
         staff = cursor.fetchone()
         print(staff)
         if staff:
@@ -93,7 +93,7 @@ def students_login():
         if not username or not password:
             error = "Username and password are required"
             return render_template('students_login.html', error=error)
-        cursor.execute("SELECT * FROM students WHERE roll_no=%s AND password=%s", (username, password))
+        cursor.execute("SELECT * FROM students WHERE BINARY roll_no=%s AND password=%s", (username, password))
         student = cursor.fetchone()
         print(student)
         if student:
@@ -164,10 +164,6 @@ def students_dashboard():
         database.commit()
 
     return render_template('students_dashboard.html')
-
-@app.route('/submit')
-def submit():
-    render_template('Home.html')
 
 
 if __name__ == '__main__':
