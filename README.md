@@ -6,8 +6,8 @@ A simple, responsive web application built using **Flask** for backend and **HTM
 
 ## 👥 Contributors
 
-- [Anish T](https://www.linkedin.com/in/anish-t)
-- [Alsan Roj A](https://www.linkedin.com/in/alsan-roj-a-a01116295)
+- [Anish T](https://www.linkedin.com/in/anish-t) - Backend & Database
+- [Alsan Roj A](https://www.linkedin.com/in/alsan-roj-a-a01116295) - Frontend
 
 ---
 
@@ -71,13 +71,49 @@ cd College-Database
 pip install flask pymysql cryptography
 ```
 
-### 3. Run the Application (Terminal)
+### 3. Change the MySQL Database Credentials present in the Python Code (backend.py) to your MySQL Credentials.
+
+Using MySQL Locally:
+```bash
+database = pymysql.connect(
+    host="localhost",          # or "System IP Address"
+    user="your username",      # or your MySQL username
+    password="your password",  # use the password you set in MySQL
+    database="college_db"      # your database name
+)
+```
+(OR)
+
+Using MySQL in Docker:
+```bash
+database = pymysql.connect(
+    host="localhost",         # or "127.0.0.1"
+    port=3306,                # use the port you mapped (default is 3306)
+    user="root",              # or your MySQL username
+    password="yourpassword",  # use the password you set in Docker
+    database="college_db"     # your database name
+)
+```
+(OR)
+
+Using MySQL in a Server:
+```bash
+database = pymysql.connect(
+    host="REMOTE SERVER IP ADDRESS OR HOSTNAME",  # e.g., "192.168.1.100" or "mysql.example.com"
+    port=3306,                                    # default MySQL port, change if needed
+    user="root",                                  # your MySQL username
+    password="your_mysql_password",               # your MySQL password
+    database="college_db"                         # your database name
+)
+```
+
+### 4. Run the Application (Terminal)
 
 ```bash
 python backend.py
 ```
 
-### 4. Open in Browser
+### 5. Open in Browser
 Navigate to: 
 ```bash
 http://127.0.0.1:5000
