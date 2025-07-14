@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -87,3 +88,94 @@
     <script src="../static/js/signup.js"></script>
   </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/signup.css" />
+        <link
+      rel="web icon"
+      href="../static/images/Engg Logo1.png"
+      type="Jpg/png"
+    />
+    <title>Staff SignUp</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <img src="../static/images/Engg Logo1.png" alt="" />
+          <h1>St. Joseph's</h1>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+          <span id="menu-icon">☰</span>
+          <span id="close-icon" style="display: none">✖</span>
+        </div>
+        <ul id="navLinks">
+          <li><a href="Home.html">Home</a></li>
+          <li><a href="students_login.html">Student Login</a></li>
+          <li><a href="staffs_login.html">Staff Login</a></li>
+          <li><a href="staffs_signup.html"><span>Staff Sign Up</span></a></li>
+          <li><a href="students_signup.html">Student Sign Up</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="video-section">
+      <video autoplay muted loop class="bg-video">
+        <source src="../static/videos/bg.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <!-- Login Form -->
+      <div class="login-container">
+        <h2>Staff Sign Up</h2>
+        {% if error %}
+          <div style="color: red; margin-bottom: 10px;">{{ error }}</div>
+        {% endif %}
+        <form method="post">
+          <div class="big-group">
+            <div class="input-group">
+              <input type="text" id="firstName" name="staff_fName" placeholder=" " required />
+              <label for="firstName">Firstname</label>
+            </div>
+            <div class="input-group">
+              <input type="text" id="lastName" name="staff_lName" placeholder=" " required />
+              <label for="lastName">Lastname</label>
+            </div>
+          </div>
+          <div class="big-group">
+            <div class="input-group">
+              <input type="email" id="eMail" name="staff_email" placeholder=" " required />
+              <label for="eMail">E-Mail</label>
+            </div>
+            <div class="input-group">
+              <input type="tel" id="mobileNumber" name="staff_phNumber" placeholder=" " required />
+              <label for="mobileNumber">Mobile Number</label>
+            </div>
+          </div>
+          <div class="big-group">
+            <div class="input-group">
+              <input type="password" id="password" name="staff_password" placeholder=" " required />
+              <label for="password">Password</label>
+            </div>
+            <div class="input-group">
+              <input type="password" id="rePassword" name="staff_rePassword" placeholder=" " required />
+              <label for="rePassword">Re-Enter Password</label>
+            </div>
+          </div>
+          <div class="group">
+            <input type="checkbox" id="showPassword" />
+            <label for="showPassword">Show Password</label>
+          </div>
+          <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have a account? <a href="staffs_login.html">Login</a></p>
+      </div>
+    </section>
+
+    <script src="../static/js/signup.js"></script>
+  </body>
+</html>
+>>>>>>> 163f3b13538ea2dbe2c3daec483d90bb319ceca6

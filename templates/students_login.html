@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -66,3 +67,73 @@
     <script src="../static/js/login.js"></script>
   </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/login.css" />
+        <link
+      rel="web icon"
+      href="../static/images/Engg Logo1.png"
+      type="Jpg/png"
+    />
+    <title>Student login</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <img src="../static/images/Engg Logo1.png" alt="" />
+          <h1>St. Joseph's</h1>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+          <span id="menu-icon">☰</span>
+          <span id="close-icon" style="display: none;">✖</span>
+        </div>
+        <ul id="navLinks">
+          <li><a href="Home.html">Home</a></li>
+          <li><a href="students_login.html"><span>Student Login</span></a></li>
+          <li><a href="staffs_login.html">Staff Login</a></li>
+          <li><a href="students_signup.html">Student Sign Up</a></li>
+          <li><a href="staffs_signup.html">Staff Sign Up</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="video-section">
+      <video autoplay muted loop class="bg-video">
+        <source src="../static/videos/bg.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <!-- Login Form -->
+      <div class="login-container">
+        <h2>Student Login</h2>
+        {% if error %}
+          <div style="color: red; margin-bottom: 10px;">{{ error }}</div>
+        {% endif %}
+        <form method="POST">
+          <div class="input-group">
+            <input type="text" id="username" name="username" placeholder=" " required />
+            <label for="username">Username</label>
+          </div>
+          <div class="input-group">
+            <input type="password" id="password" name="password" placeholder=" " required />
+            <label for="password">Password</label>
+          </div>
+          <div class="group">
+            <input type="checkbox" id="showPassword" />
+            <label for="showPassword">Show Password</label>
+            <a href="#">Forget Password?</a>
+          </div>
+          <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="students_signup.html">Register</a></p>
+      </div>
+    </section>
+
+    <script src="../static/js/login.js"></script>
+  </body>
+</html>
+>>>>>>> 163f3b13538ea2dbe2c3daec483d90bb319ceca6
