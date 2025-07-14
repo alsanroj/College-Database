@@ -8,7 +8,7 @@ import re
 
 
 app = Flask(__name__)
-app.secret_key = 'your_random_secret_key_here'
+app.secret_key = 'b2e3c7e8f4a1d9c6e5b8f7a2c3d4e6f1a9b0c8d7e3f2a6b5c4d1e8f7a3b6c9d0' # Paste a strong and random secret key of your own desire.
 
 #MySQL Database Details
 database = pymysql.connect(
