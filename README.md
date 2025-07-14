@@ -129,7 +129,7 @@ http://localhost:5000
 
 - **🎓 Student & 🧑‍🏫 Staff registration and login**
 
-- **✨ Responsive UI using custom CSS**
+- **✨ Responsive UI using custom CSS and Bootstrap**
 
 - **🎞️ Video background and interactive design**
 
