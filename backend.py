@@ -1,3 +1,4 @@
+from logging import error
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 import pymysql
 import json
@@ -8,6 +9,8 @@ import re
 
 app = Flask(__name__)
 app.secret_key = 'your_random_secret_key_here'
+
+#MySQL Database Details
 database = pymysql.connect(
     host="localhost",
     user="root",
@@ -23,10 +26,14 @@ def index():
     return render_template('Home.html')
 
 
+
+
 # Home Page
 @app.route('/Home.html')
 def home():
     return render_template('Home.html')
+
+
 
 
 # Staffs Login
@@ -49,6 +56,8 @@ def staffs_login():
     return render_template('staffs_login.html')
 
 
+
+
 # Staffs Signup
 @app.route('/staffs_signup.html', methods=['GET', 'POST'])
 def staffs_signup():
@@ -59,15 +68,33 @@ def staffs_signup():
         staff_phonenumber = request.form.get('staff_phNumber')
         staff_password = request.form.get('staff_password')
         staff_repassword = request.form.get('staff_rePassword')
+        staff_rollno = request.form.get('staff_rollno')
+
+        #Checks for valid role number
+        if not staff_rollno or not re.match(r'^TE139[A-Z]{2}\d+$', staff_rollno):
+            error = "Roll number must be in \"TZ999\" this format, followed by two captial Alphabets and numbers"
+            return render_template('staffs_signup.html', error=error)
+
+        #Checks wheather the phone number is 10 digit ot not
+        if not staff_phonenumber or not re.match(r'^\d{10}$', staff_phonenumber):
+            error = "The Phone Number must contain 10 digits"
+            return render_template('staffs_signup.html', error=error)
+
         #Checks for the password and re-password match
+        if not staff_password or len(staff_password) < 16:
+            error = "Password must contain at least 16 characters"
+            return render_template('staffs_signup.html', error=error)
+
         if staff_password != staff_repassword:
             error = "Passwords do not match"
             return render_template('staffs_signup.html', error=error)
+
         #Checks for email duplicate
         cursor.execute("SELECT * FROM staffs WHERE email=%s", (staff_email,))
         if cursor.fetchone():
             error = "Email already registered"
             return render_template('staffs_signup.html', error=error)
+
         #Inserts the new user (STAFF) into the database
         cursor.execute(
             "INSERT INTO staffs (first_name, last_name, email, ph_number, password) VALUES (%s, %s, %s, %s, %s)",
@@ -83,6 +110,8 @@ def staffs_signup():
             error = "An error occurred during registration"
             return render_template('staffs_login.html', error=error)
     return render_template('staffs_signup.html')
+
+
 
 
 #Students Login
@@ -107,35 +136,47 @@ def students_login():
     return render_template('students_login.html')
 
 
+
+
 # Students Signup
 @app.route('/students_signup.html', methods=['GET', 'POST'])
 def students_signup():
     if request.method == 'POST':
-        student_firstname = request.form.get('student_fName')
-        student_lastname = request.form.get('student_lName')
+        student_name = request.form.get('student_Name')
+        student_rollno = request.form.get('student_Rollno')
         student_email = request.form.get('student_email')
         student_phonenumber = request.form.get('student_phNumber')
         student_password = request.form.get('student_password')
         student_repassword = request.form.get('student_rePassword')
-        student_rollno = request.form.get('student_rollNo')  # Make sure your form has this field
 
-        if not student_rollno or not re.match(r'^23EE139[A-Z]{2}\d+$', student_rollno):
-            error = "Roll number must be in this \"25ZZ999\" desired format - two uppercase alphabets and digits."
+        #Checks for valid role number
+        if not student_rollno or not re.match(r'^\d{2}[A-Z]{2}\d{3}$', student_rollno):
+            error = "Roll number must be in this format: Year of Admission , Department Name, Unique Number of the Student \n (e.g., 23EE271)"
+            return render_template('students_signup.html', error=error)
+
+        #Checks wheather the phone number is 10 digit ot not
+        if not student_phonenumber or not re.match(r'^\d{10}$', student_phonenumber):
+            error = "The Phone Number must contain 10 digits"
             return render_template('students_signup.html', error=error)
 
         #Checks for the password and re-password match
+        if not student_password or len(student_password) < 16:
+            error = "Password must contain at least 16 characters"
+            return render_template('students_signup.html', error=error)
         if student_password != student_repassword:
             error = "Passwords do not match"
             return render_template('students_signup.html', error=error)
+
         #Checks for email duplicate
         cursor.execute("SELECT * FROM students WHERE email=%s", (student_email,))
         if cursor.fetchone():
             error = "Email already registered"
             return render_template('students_signup.html', error=error)
+
         #Inserts the new user (STUDENT) into the database
         cursor.execute(
-            "INSERT INTO students (roll_no, first_name, last_name, email, ph_number, password) VALUES (%s, %s, %s, %s, %s, %s)",
-            (student_rollno, student_firstname, student_lastname, student_email, student_phonenumber, student_password)
+            "INSERT INTO students (roll_no, name, email, ph_number, password) VALUES (%s, %s, %s, %s, %s)",
+            (student_rollno, student_name, student_email, student_phonenumber, student_password)
         )
         database.commit()
         cursor.execute("SELECT * FROM students WHERE email=%s", (student_email,))
@@ -149,6 +190,8 @@ def students_signup():
             error = "An error occurred during registration"
             return render_template('students_login.html', error=error)
     return render_template('students_signup.html')
+
+
 
 
 # Students Dashboard
@@ -171,6 +214,8 @@ def students_dashboard():
         database.commit()
 
     return render_template('students_dashboard.html')
+
+
 
 
 if __name__ == '__main__':
