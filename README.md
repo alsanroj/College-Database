@@ -6,13 +6,8 @@ A simple, responsive web application built using **Flask** for backend and **HTM
 
 ## 👥 Contributors
 
-<<<<<<< HEAD
-- [Anish T](https://www.linkedin.com/in/anish-t)
-- [Alsan Roj A](https://www.linkedin.com/in/alsan-roj-a-a01116295)
-=======
 - [Anish T](https://www.linkedin.com/in/anish-t) - Backend & Database
 - [Alsan Roj A](https://www.linkedin.com/in/alsan-roj-a-a01116295) - Frontend
->>>>>>> 163f3b13538ea2dbe2c3daec483d90bb319ceca6
 
 ---
 
@@ -64,7 +59,7 @@ A simple, responsive web application built using **Flask** for backend and **HTM
 ## 🚀 How to Run
 
 ### 1. Clone the Repository (Terminal)
- 
+
 ```bash
 git clone https://github.com/alsanroj/College-Database.git
 cd College-Database
@@ -76,9 +71,6 @@ cd College-Database
 pip install flask pymysql cryptography
 ```
 
-<<<<<<< HEAD
-### 3. Run the Application (Terminal)
-=======
 ### 3. Change the MySQL Database Credentials present in the Python Code (backend.py) to your MySQL Credentials.
 
 Using MySQL Locally:
@@ -116,17 +108,13 @@ database = pymysql.connect(
 ```
 
 ### 4. Run the Application (Terminal)
->>>>>>> 163f3b13538ea2dbe2c3daec483d90bb319ceca6
 
 ```bash
 python backend.py
 ```
 
-<<<<<<< HEAD
-### 4. Open in Browser
-=======
+
 ### 5. Open in Browser
->>>>>>> 163f3b13538ea2dbe2c3daec483d90bb319ceca6
 Navigate to: 
 ```bash
 http://127.0.0.1:5000
@@ -142,11 +130,7 @@ http://localhost:5000
 
 - **🎓 Student & 🧑‍🏫 Staff registration and login**
 
-<<<<<<< HEAD
-- **✨ Responsive UI using custom CSS**
-=======
 - **✨ Responsive UI using custom CSS and Bootstrap**
->>>>>>> 163f3b13538ea2dbe2c3daec483d90bb319ceca6
 
 - **🎞️ Video background and interactive design**
 
