@@ -62,17 +62,16 @@ def staffs_login():
 @app.route('/staffs_signup.html', methods=['GET', 'POST'])
 def staffs_signup():
     if request.method == 'POST':
-        staff_firstname = request.form.get('staff_fName')
-        staff_lastname = request.form.get('staff_lName')
+        staff_name = request.form.get('staff_Name')
+        staff_rollno = request.form.get('staff_Rollno')
         staff_email = request.form.get('staff_email')
         staff_phonenumber = request.form.get('staff_phNumber')
         staff_password = request.form.get('staff_password')
         staff_repassword = request.form.get('staff_rePassword')
-        staff_rollno = request.form.get('staff_rollno')
 
         #Checks for valid role number
-        if not staff_rollno or not re.match(r'^TE139[A-Z]{2}\d+$', staff_rollno):
-            error = "Roll number must be in \"TZ999\" this format, followed by two captial Alphabets and numbers"
+        if not staff_rollno or not re.match(r'^T[A-Z]{2}\d{2}$', staff_rollno):
+            error = "Roll number must be in this format: T, Department Name, Unique Number of the Staff \n (e.g., TEE40)"
             return render_template('staffs_signup.html', error=error)
 
         #Checks wheather the phone number is 10 digit ot not
@@ -89,19 +88,19 @@ def staffs_signup():
             error = "Passwords do not match"
             return render_template('staffs_signup.html', error=error)
 
-        #Checks for email duplicate
-        cursor.execute("SELECT * FROM staffs WHERE email=%s", (staff_email,))
+        #Checks for Roll No duplicate
+        cursor.execute("SELECT * FROM staffs WHERE staff_rollno=%s", (staff_rollno,))
         if cursor.fetchone():
-            error = "Email already registered"
+            error = "User already registered"
             return render_template('staffs_signup.html', error=error)
 
         #Inserts the new user (STAFF) into the database
         cursor.execute(
-            "INSERT INTO staffs (first_name, last_name, email, ph_number, password) VALUES (%s, %s, %s, %s, %s)",
-            (staff_firstname, staff_lastname, staff_email, staff_phonenumber, staff_password)
+            "INSERT INTO staffs (staff_name, staff_rollno, staff_email, staff_phonenumber, staff_password) VALUES (%s, %s, %s, %s, %s)",
+            (staff_name, staff_rollno, staff_email, staff_phonenumber, staff_password)
         )
         database.commit()
-        cursor.execute("SELECT * FROM staffs WHERE email=%s", (staff_email,))
+        cursor.execute("SELECT * FROM staffs WHERE staff_rollno=%s", (staff_rollno,))
         staff = cursor.fetchone()
         print(staff)
         if staff:
@@ -168,18 +167,18 @@ def students_signup():
             return render_template('students_signup.html', error=error)
 
         #Checks for email duplicate
-        cursor.execute("SELECT * FROM students WHERE email=%s", (student_email,))
+        cursor.execute("SELECT * FROM students WHERE student_email=%s", (student_email,))
         if cursor.fetchone():
             error = "Email already registered"
             return render_template('students_signup.html', error=error)
 
         #Inserts the new user (STUDENT) into the database
         cursor.execute(
-            "INSERT INTO students (roll_no, name, email, ph_number, password) VALUES (%s, %s, %s, %s, %s)",
+            "INSERT INTO students (student_rollno, student_name, student_email, student_phonenumber, student_password) VALUES (%s, %s, %s, %s, %s)",
             (student_rollno, student_name, student_email, student_phonenumber, student_password)
         )
         database.commit()
-        cursor.execute("SELECT * FROM students WHERE email=%s", (student_email,))
+        cursor.execute("SELECT * FROM students WHERE student_email=%s", (student_email,))
         student = cursor.fetchone()
         print(student)
         if student:
