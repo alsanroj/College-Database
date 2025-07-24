@@ -1,190 +1,709 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Student Dashboard</title>
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-</head>
-<body class="bg-light">
-
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="../static/images/Engg Logo1.png" alt="" height="30" class="me-2"> SJCE
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarMenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-box-arrow-in-right text-danger"></i> Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="bi bi-person-plus text-danger"></i> Sign Up</a>
-          </li>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Information System</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../static/css/students_dashboard.css">
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header text-center">
+      <div class="container header-content">
+        <h1 class="mb-0">
+          <img class="logo" src="../static/images/Engg Logo1.png" alt=""> SJCE
+        </h1>
+        <ul>
+          <li class="list-unstyled"><a class="fs-5 text-decoration-none" href="#">Logout</a></li>
         </ul>
       </div>
-    </div>
-  </nav>
+    </header>
 
-  <!-- Layout -->
-  <div class="container-fluid my-4">
-    <div class="row">
-      <!-- Sidebar -->
-      <div class="col-md-3">
-        <div class="card shadow p-3">
-          <h5>Menu</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <button class="btn btn-outline-primary mb-2 w-100" onclick="showSection('dashboard')">
-                <i class="bi bi-house-door-fill"></i> Dashboard
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="btn btn-outline-success w-100" onclick="showSection('profile')">
-                <i class="bi bi-person-circle"></i> Profile
-              </button>
-            </li>
-          </ul>
+    <div class="container mt-4">
+      <!-- Navigation Tabs/Pills -->
+      <ul class="nav nav-pills justify-content-center gap-2 mb-4">
+        <li class="nav-item">
+          <a class="nav-link active bg-danger" id="dashboardLink" href="#"
+            ><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profileLink" href="#"
+            ><i class="fas fa-user-graduate me-2"></i>Student Profile</a
+          >
+        </li>
+      </ul>
+
+      <!-- Dashboard Section -->
+      <div id="dashboardSection" class="content-section active">
+        <div class="dashboard-content">
+          <h2 class="text-center text-danger mb-4">
+            Welcome to the Dashboard!
+          </h2>
+          <p class="lead text-center">
+            This is your central hub for quick insights and important
+            information relevant to your college journey.
+          </p>
+          <p class="text-muted text-center">
+            Navigate between the Dashboard and your Student
+            <strong>Profile</strong> using the tabs above to manage your
+            information and stay informed.
+          </p>
         </div>
       </div>
 
-      <!-- Main Content -->
-      <div class="col-md-9">
-        <!-- Dashboard -->
-        <div id="dashboardSection" class="card shadow p-4 mb-4">
-          <h4>Welcome to the Student Dashboard</h4>
-          <p>This portal allows students to:</p>
-          <ul>
-            <li>Update personal and academic information</li>
-            <li>Upload profile photo and documents</li>
-            <li>Track admission and login status</li>
-            <li>Access institution-specific details easily</li>
-          </ul>
-          <p>Please click on the <strong>Profile</strong> tab to edit or update your details.</p>
-        </div>
+      <!-- Student Information Form Section (Profile) -->
+      <div id="profileSection" class="content-section">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 col-md-12">
+            <div class="form-container">
+              <form id="studentInfoForm">
+                <h4 class="section-title">
+                  <i class="fas fa-user-circle me-2"></i>Personal Details
+                </h4>
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="registerNumber" class="form-label"
+                      >Register Number</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-id-card"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="registerNumber"
+                        name="register_number"
+                        placeholder="Register Number"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="rollNumber" class="form-label"
+                      >Roll Number</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-user"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="rollNumber"
+                        name="roll_no"
+                        placeholder="Roll Number"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
 
-        <!-- Profile -->
-        <div id="profileSection" class="card shadow p-4 mb-4 d-none">
-          <h4>Student Registration Form</h4>
-          <form id="combinedForm">
-            <!-- User Info -->
-            <h5 class="mt-3 mb-3 text-danger">User Information</h5>
-            <div class="mb-3">
-              <label class="form-label"><i class="bi bi-person-fill text-danger"></i> Full Name</label>
-              <input type="text" class="form-control" required />
-            </div>
-            <div class="mb-3">
-              <label class="form-label"><i class="bi bi-envelope-fill text-danger"></i> Email</label>
-              <input type="email" class="form-control" required />
-            </div>
-            <div class="mb-3">
-              <label class="form-label"><i class="bi bi-phone-fill text-danger"></i> Phone</label>
-              <input type="tel" class="form-control" required />
-            </div>
-            <div class="mb-3">
-              <label class="form-label"><i class="bi bi-calendar-date-fill text-danger"></i> Date of Birth</label>
-              <input type="date" class="form-control" required />
-            </div>
-            <div class="mb-3">
-              <label class="form-label"><i class="bi bi-gender-ambiguous text-danger"></i> Gender</label>
-              <select class="form-select" required>
-                <option disabled selected>Select gender</option>
-                <option>Male</option><option>Female</option><option>Other</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label class="form-label"><i class="bi bi-geo-alt-fill text-danger"></i> Address</label>
-              <textarea class="form-control" required></textarea>
-            </div>
-            <div class="mb-3">
-              <label class="form-label"><i class="bi bi-upload text-danger"></i> Upload Photo</label>
-              <input type="file" class="form-control" onchange="previewImage(event)" />
-              <img id="preview" class="img-fluid mt-2 d-none rounded shadow" style="max-width: 150px;" />
-            </div>
-            <br>
-            <!-- Student Info -->
-            <h5 class="mt-4 mb-3 text-primary">Academic Information</h5>
-            <div class="row g-2">
-              <div class="col-sm-6">
-                <label class="form-label fw-bold"><i class="bi bi-person-vcard-fill text-primary"></i> Register Number</label>
-                <input type="text" class="form-control" required />
-              </div>
-              <div class="col-sm-6">
-                <label class="form-label fw-bold"><i class="bi bi-person-lines-fill text-primary"></i> Roll Number</label>
-                <input type="text" class="form-control" required />
-              </div>
-              <div class="col-sm-6">
-                <label class="form-label fw-bold"><i class="bi bi-shield-lock-fill text-primary"></i> Login Status</label>
-                <select class="form-select">
-                  <option>Active</option>
-                  <option>Inactive</option>
-                </select>
-              </div>
-              <div class="col-sm-6">
-                <label class="form-label fw-bold"><i class="bi bi-check2-circle text-primary"></i> Admission Status</label>
-                <select class="form-select">
-                  <option>Admitted</option>
-                  <option>Pending</option>
-                  <option>Rejected</option>
-                </select>
-              </div>
-              <div class="col-sm-6">
-                <label class="form-label fw-bold"><i class="bi bi-calendar-range-fill text-primary"></i> Admission Batch</label>
-                <input type="text" class="form-control" placeholder="2023-2024" />
-              </div>
-              <div class="col-sm-6">
-                <label class="form-label fw-bold"><i class="bi bi-book-fill text-primary"></i> Semester</label>
-                <select class="form-select">
-                  <option>I</option><option>II</option><option>III</option><option>IV</option>
-                  <option>V</option><option>VI</option><option>VII</option><option>VIII</option>
-                </select>
-              </div>
-              <div class="col-12">
-                <label class="form-label fw-bold"><i class="bi bi-building text-primary"></i> Institute</label>
-                <input type="text" class="form-control" placeholder="St Joseph's College of Engineering" />
-              </div>
-              <div class="col-12">
-                <label class="form-label fw-bold"><i class="bi bi-mortarboard-fill text-primary"></i> Degree/Branch</label>
-                <select class="form-select" required>
-                  <option disabled selected>Select your branch</option>
-                  <option>B.E - Computer Science and Engineering</option>
-                  <option>B.E - Electronics and Communication Engineering</option>
-                  <option>B.E - Electrical and Electronics Engineering</option>
-                  <option>B.E - Mechanical Engineering</option>
-                  <option>B.Tech - Artificial Intelligence and Data Science</option>
-                  <option>B.Tech - Chemical Engineering</option>
-                  <option>B.Tech - Information Technology</option>
-                  <option>B.Tech - Artificial Intelligence and Machine Learning</option>
-                </select>
-              </div>
-              <div class="col-12">
-                <label class="form-label fw-bold"><i class="bi bi-journal-code text-primary"></i> Scheme</label>
-                <input type="text" class="form-control" placeholder="2021-2022" />
-              </div>
-            </div>
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="studentName" class="form-label"
+                      >Student Name</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-user"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="studentName"
+                        name="student_name"
+                        placeholder="Enter Your Name"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="gender" class="form-label">Gender</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-venus-mars"></i
+                      ></span>
+                      <select class="form-select" id="gender" name="student_gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
 
-            <div class="text-end mt-4">
-              <button type="submit" class="btn btn-success">Submit</button>
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="dob" class="form-label">Date of Birth</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-calendar-alt"></i
+                      ></span>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="dob"
+                        name="student_dob"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="fatherName" class="form-label"
+                      >Father's Name</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-user-tie"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="fatherName"
+                        name="father_name"
+                        placeholder="Father Name"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="fatherMobile" class="form-label"
+                      >Father's Mobile No.</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-phone"></i
+                      ></span>
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="fatherMobile"
+                        name="fathers_phone_no"
+                        placeholder="e.g., 1111111111"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="motherName" class="form-label"
+                      >Mother's Name</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-user"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="motherName"
+                        name="mother_name"
+                        placeholder="Mother Name"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="motherMobile" class="form-label"
+                      >Mother's Mobile No.</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-phone"></i
+                      ></span>
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="motherMobile"
+                        name="mothers_phone_no"
+                        placeholder="e.g., 2222222222"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">Email ID</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-envelope"></i
+                      ></span>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        placeholder="e.g., example@gmail.com"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="mobileNo" class="form-label">Mobile No.</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-mobile-alt"></i
+                      ></span>
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="mobileNo"
+                        name="students_phone_no"
+                        placeholder="e.g., 9876543210"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="aadharNumber" class="form-label"
+                      >Aadhar Number</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-fingerprint"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="aadharNumber"
+                        name="aadhar_number"
+                        placeholder="e.g., 123456789012"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="nationality" class="form-label"
+                      >Nationality</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-map"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="nationality"
+                        name="nationality"
+                        value="INDIAN"
+                        readonly
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="religion" class="form-label">Religion</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-church"></i
+                      ></span>
+                      <select class="form-select" id="religion" name="religion" required>
+                        <option value="">Select Religion</option>
+                        <option value="Christian">Christian</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Muslim">Muslim</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="community" class="form-label">Community</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-globe"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="community"
+                        name="community"
+                        placeholder="Community"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="caste" class="form-label">Caste</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-users"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="caste"
+                        name="caste"
+                        placeholder="Caste"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <h4 class="section-title mt-4">
+                  <i class="fas fa-map-marker-alt me-2"></i>Address Details
+                </h4>
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <label for="localAddress" class="form-label"
+                      >Local Address</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-home"></i
+                      ></span>
+                      <textarea
+                        class="form-control"
+                        id="localAddress"
+                        name="local_address"
+                        rows="3"
+                        placeholder="Local Address"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <label for="permanentAddress" class="form-label"
+                      >Permanent Address</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-building"></i
+                      ></span>
+                      <textarea
+                        class="form-control"
+                        id="permanentAddress"
+                        name="permanent_address"
+                        rows="3"
+                        placeholder="Permanent Address"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-4 mb-3 mb-md-0">
+                    <label for="city" class="form-label">City</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-city"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="city"
+                        name="city"
+                        placeholder="City"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3 mb-md-0">
+                    <label for="district" class="form-label">District</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-map"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="district"
+                        name="district"
+                        placeholder="District"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="taluka" class="form-label">Taluk</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-map-pin"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="taluka"
+                        name="taluka"
+                        placeholder="Taluk"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <h4 class="section-title mt-4">
+                  <i class="fas fa-graduation-cap me-2"></i>Admission Details
+                </h4>
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="schoolInstitute" class="form-label"
+                      >School/Institute Name</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-school"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="schoolInstitute"
+                        name="school_institute"
+                        placeholder="College Name"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="degree" class="form-label">Degree</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-award"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="degree"
+                        name="degree"
+                        placeholder="Bachelor of Engineering"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="branch" class="form-label">Branch</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-code-branch"></i
+                      ></span>
+                      <select class="form-select" id="branch" required>
+                      <select class="form-select" id="branch" name="branch" required>
+                        <option value="">Select Branch</option>
+                        <option value="B.Tech Computer Science Engineering">
+                          B.Tech Computer Science Engineering
+                        </option>
+                        <option value="B.Tech Information Technology">
+                          B.Tech Information Technology
+                        </option>
+                        <option
+                          value="B.E Electronics and Communication Engineering"
+                        >
+                          B.E Electronics and Communication Engineering
+                        </option>
+                        <option value="B.E Mechanical Engineering">
+                          B.E Mechanical Engineering
+                        </option>
+                        <option
+                          value="B.E Electrical and Electronics Engineering"
+                        >
+                          B.E Electrical and Electronics Engineering
+                        </option>
+                        <option value="B.E Chemical Engineering">
+                          B.E Chemical Engineering
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="admissionBatch" class="form-label"
+                      >Admission Batch</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-calendar-check"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="admissionBatch"
+                        name="admission_batch"
+                        placeholder="2023-2024"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="academicYear" class="form-label"
+                      >Academic Year</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-calendar-alt"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="academicYear"
+                        name="academic_year"
+                        placeholder="eg: 2025-2026"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="admissionDate" class="form-label"
+                      >Admission Date</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-calendar-day"></i
+                      ></span>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="admissionDate"
+                        name="admission_date"
+                        placeholder="2023-11-24"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="currentYear" class="form-label"
+                      >Current Year</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-calendar-alt"></i
+                      ></span>
+                      <select class="form-select" id="currentYear" required>
+                      <select class="form-select" id="currentYear" name="current_year" required>
+                        <option value="">Select Year</option>
+                        <option value="I">I</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="IV">IV</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="admissionType" class="form-label"
+                      >Admission Type</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-user-plus"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="admissionType"
+                        name="admission_type"
+                        placeholder="REGULAR"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <h4 class="section-title mt-4">
+                  <i class="fas fa-university me-2"></i>Bank Details
+                </h4>
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="bankName" class="form-label">Bank Name</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-bank"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="bankName"
+                        name="bank_name"
+                        placeholder="Bank name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="bankAccountNumber" class="form-label"
+                      >Bank Account Number</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-money-check-alt"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="bankAccountNumber"
+                        name="bank_account_number"
+                        placeholder="e.g., ********291"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-6 mb-3 mb-md-0">
+                    <label for="ifscCode" class="form-label">IFSC Code</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-code"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="ifscCode"
+                        name="ifsc_code"
+                        placeholder="e.g., *********222"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="bankAddress" class="form-label"
+                      >Bank Address</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-map-marked-alt"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="bankAddress"
+                        name="bank_address"
+                        placeholder="Bank Address"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center mt-4">
+                  <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-save me-2"></i>Save Information
+                  </button>
+                </div>
+              </form>
             </div>
-            <div id="successAlert" class="alert alert-success mt-3 d-none">
-              Form submitted successfully!
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../static/js/StudentDashboard.js"></script>
-</body>
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="../static/js/students_dashboard.js"></script>
+  </body>
 </html>
-

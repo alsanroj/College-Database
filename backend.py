@@ -45,7 +45,7 @@ def staffs_login():
         if not username or not password:
             error = "Username and password are required"
             return render_template('staffs_login.html', error=error)
-        cursor.execute("SELECT * FROM staffs WHERE BINARY roll_no=%s AND password=%s", (username, password))
+        cursor.execute("SELECT * FROM staffs WHERE BINARY staff_rollno=%s AND BINARY staff_password=%s", (username, password))
         staff = cursor.fetchone()
         print(staff)
         if staff:
@@ -122,7 +122,7 @@ def students_login():
         if not username or not password:
             error = "Username and password are required"
             return render_template('students_login.html', error=error)
-        cursor.execute("SELECT * FROM students WHERE BINARY roll_no=%s AND password=%s", (username, password))
+        cursor.execute("SELECT * FROM students WHERE BINARY student_rollno=%s AND BINARY student_password=%s", (username, password))
         student = cursor.fetchone()
         print(student)
         if student:
@@ -199,16 +199,26 @@ def students_dashboard():
     if not session.get('student_logged_in'):
         return redirect(url_for('students_login'))
     if request.method == 'POST':
-        student_fullname = request.form.get('full_name')
+        student_register_number = request.form.get('register_number')
+        student_roll_no = request.form.get('roll_no')
+        student_name = request.form.get('student_name')
+        student_gender = request.form.get('student_gender')
+        student_dob = request.form.get('student_dob')
+        student_father_name = request.form.get('father_name')
+        student_fathers_phone_no = request.form.get('fathers_phone_no')
+        student_mother_name = request.form.get('mother_name')
+        student_mothers_phone_no = request.form.get('mothers_phone_no')
         student_email = request.form.get('email')
-        student_phone_number = request.form.get('phone')
-        student_DOB = request.form.get('dob')
-        student_gender = request.form.get('gender')
-        student_address = request.form.get('address')
+        student_phone_no = request.form.get('students_phone_no')
+        student_aadhar_number = request.form.get('aadhar_number')
+        student_nationality = request.form.get('nationality')
+        student_religion = request.form.get('religion')
+        student_community = request.form.get('community')
+        student_caste = request.form.get('caste')
         
         cursor.execute(
-            "INSERT INTO students_dashboard_details (name, gender, mobile_no, email, dob, address) VALUES (%s, %s, %s, %s, %s, %s)",
-            (student_fullname, student_gender, student_phone_number, student_email, student_DOB, student_address)
+            "INSERT INTO student_personal_details (register_number, roll_no, name, gender, date_of_birth, father_name, father_mobile, mother_name, mother_mobile, mail, student_mobile, aadhar_number, nationality, religion, community, caste) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            (student_register_number, student_roll_no, student_name, student_gender, student_dob, student_father_name, student_fathers_phone_no, student_mother_name, student_mothers_phone_no, student_email, student_phone_no, student_aadhar_number, student_nationality, student_religion, student_community, student_caste)
         )
         database.commit()
 
