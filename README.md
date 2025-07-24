@@ -51,6 +51,7 @@ A simple, responsive web application built using **Flask** for backend and **HTM
     - `home.js`
     - `login.js`
     - `signup.js`
+    - `students_dashboard.js`
   - `images/` – Assets like logos and background images:
   - `videos/` – Assets like animation and background videos:
 
