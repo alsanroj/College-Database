@@ -126,6 +126,11 @@ body {
   display: block;
 }
 
+#permanentAddress,
+#localAddress{
+  resize: none;
+}
+
 .dashboard-content {
   background-color: #ffffff;
   padding: 30px;
