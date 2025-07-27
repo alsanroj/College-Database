@@ -26,6 +26,7 @@ A simple, responsive web application built using **Flask** for backend and **HTM
 
 - `API's`
   - `Cloud Flare` - Captcha:
+  - `Indian Postal` - Postal Pincode
 
 ---
 
