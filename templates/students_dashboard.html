@@ -68,7 +68,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-10 col-md-12">
             <div class="form-container">
-              <form id="studentInfoForm">
+              <form id="studentInfoForm" method="post">
                 <h4 class="section-title">
                   <i class="fas fa-user-circle me-2"></i>Personal Details
                 </h4>
@@ -358,6 +358,7 @@
                     </div>
                   </div>
                 </div>
+                
 
                 <h4 class="section-title mt-4">
                   <i class="fas fa-map-marker-alt me-2"></i>Address Details
@@ -417,21 +418,6 @@
                     </div>
                   </div>
                   <div class="col-md-4 mb-3 mb-md-0">
-                    <label for="district" class="form-label">District</label>
-                    <div class="input-group">
-                      <span class="input-group-text"
-                        ><i class="fas fa-map"></i
-                      ></span>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="district"
-                        name="district"
-                        placeholder="District"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-md-4">
                     <label for="taluka" class="form-label">Taluk</label>
                     <div class="input-group">
                       <span class="input-group-text"
@@ -443,6 +429,21 @@
                         id="taluka"
                         name="taluka"
                         placeholder="Taluk"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="district" class="form-label">District</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        ><i class="fas fa-map"></i
+                      ></span>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="district"
+                        name="district"
+                        placeholder="District"
                       />
                     </div>
                   </div>
@@ -464,7 +465,7 @@
                         type="text"
                         class="form-control"
                         id="schoolInstitute"
-                        name="school_institute"
+                        name="institute_name"
                         placeholder="College Name"
                         required
                       />

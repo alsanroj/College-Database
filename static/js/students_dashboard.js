@@ -25,7 +25,6 @@ document.getElementById("profileLink").addEventListener("click", function (e) {
 document
   .getElementById("studentInfoForm")
   .addEventListener("submit", function (e) {
-    e.preventDefault();
-    alert("Student information saved successfully!");
-    // Here you would typically send the form data to a server
+    // Let the form submit normally to the backend
   });
+
