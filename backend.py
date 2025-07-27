@@ -173,10 +173,10 @@ def students_signup():
                 error = "Passwords do not match"
                 return render_template('students_signup.html', error=error)
 
-            #Checks for email duplicate
-            cursor.execute("SELECT * FROM students WHERE email=%s", (email,))
+            #Checks for Roll Number duplicate
+            cursor.execute("SELECT * FROM students WHERE rollno=%s", (rollno,))
             if cursor.fetchone():
-                error = "Email already registered"
+                error = "User already registered"
                 return render_template('students_signup.html', error=error)
 
             #Inserts the new user (STUDENT) into the database
@@ -253,26 +253,37 @@ def students_dashboard():
             ifsc_code = request.form.get('ifsc_code')
             bank_address = request.form.get('bank_address')
 
-        
+            # To Store Personal Details
             cursor.execute(
-                "INSERT INTO student_personal_details (register_number, roll_no, name, gender, date_of_birth, father_name, father_mobile, mother_name, mother_mobile, mail, student_mobile, aadhar_number, nationality, religion, community, caste) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                "INSERT INTO student_personal_details (register_number, rollno, name, gender, date_of_birth, father_name, father_mobile, mother_name, mother_mobile, mail, student_mobile, aadhar_number, nationality, religion, community, caste) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                 (student_register_number, student_roll_no, student_name, student_gender, student_dob, student_father_name, student_fathers_phone_no, student_mother_name, student_mothers_phone_no, student_email, student_phone_no, student_aadhar_number, student_nationality, student_religion, student_community, student_caste)
             )
             database.commit()
+            print("Student Personal Details Inserted Successfully")
 
+            # To Store Address Details
             cursor.execute(
                 "INSERT INTO student_address_details (rollno, local_address, permanent_address, district, taluk, city) VALUES (%s, %s, %s, %s, %s, %s)",
                 (student_roll_no, local_address, permanent_address, district, taluk, city)
             )
             database.commit()
+            print("Student Address Details Inserted Successfully")
 
+            # To Store Admission Details
             cursor.execute(
                 "INSERT INTO student_admission_details (rollno, college_name, degree, branch, admission_batch, academic_year, admission_date, current_year, admission_type) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
                 (student_roll_no, college_name, degree, branch, admission_batch, academic_year, admission_date, current_year, admission_type)
             )
             database.commit()
+            print("Student Admission Details Inserted Successfully")
 
-            print("Data Inserted Successfully")
+            # To Store Bank Details
+            cursor.execute(
+                "INSERT student_bank_details (rollno, bank_name, bank_account_number, ifsc_code, bank_address) VALUES (%s, %s, %s, %s, %s)",
+                (student_roll_no, bank_name, bank_account_number, ifsc_code, bank_address)
+            )
+            database.commit()
+            print("Student Bank Details Inserted Successfully")
 
         except Exception as e:
             print("Error inserting data:", e)

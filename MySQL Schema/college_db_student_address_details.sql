@@ -18,28 +18,30 @@ USE `college_db`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `staffs`
+-- Table structure for table `student_address_details`
 --
 
-DROP TABLE IF EXISTS `staffs`;
+DROP TABLE IF EXISTS `student_address_details`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `staffs` (
-  `staff_rollno` varchar(255) DEFAULT NULL,
-  `staff_name` varchar(255) DEFAULT NULL,
-  `staff_email` varchar(255) DEFAULT NULL,
-  `staff_phonenumber` varchar(255) DEFAULT NULL,
-  `staff_password` varchar(255) DEFAULT NULL
+CREATE TABLE `student_address_details` (
+  `rollno` varchar(255) DEFAULT NULL,
+  `local_address` varchar(255) DEFAULT NULL,
+  `permanent_address` varchar(255) DEFAULT NULL,
+  `district` varchar(255) DEFAULT NULL,
+  `taluk` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `staffs`
+-- Dumping data for table `student_address_details`
 --
 
-LOCK TABLES `staffs` WRITE;
-/*!40000 ALTER TABLE `staffs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `staffs` ENABLE KEYS */;
+LOCK TABLES `student_address_details` WRITE;
+/*!40000 ALTER TABLE `student_address_details` DISABLE KEYS */;
+INSERT INTO `student_address_details` VALUES ('23EE139','1/185, Kandhan Illam, Kolathupalayam,','Chinnamanali, Tiruchengode,','Salem','salem','Namakkal');
+/*!40000 ALTER TABLE `student_address_details` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

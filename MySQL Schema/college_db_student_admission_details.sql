@@ -18,28 +18,33 @@ USE `college_db`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `staffs`
+-- Table structure for table `student_admission_details`
 --
 
-DROP TABLE IF EXISTS `staffs`;
+DROP TABLE IF EXISTS `student_admission_details`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `staffs` (
-  `staff_rollno` varchar(255) DEFAULT NULL,
-  `staff_name` varchar(255) DEFAULT NULL,
-  `staff_email` varchar(255) DEFAULT NULL,
-  `staff_phonenumber` varchar(255) DEFAULT NULL,
-  `staff_password` varchar(255) DEFAULT NULL
+CREATE TABLE `student_admission_details` (
+  `rollno` varchar(255) DEFAULT NULL,
+  `college_name` varchar(255) DEFAULT NULL,
+  `degree` varchar(255) DEFAULT NULL,
+  `branch` varchar(255) DEFAULT NULL,
+  `admission_batch` varchar(255) DEFAULT NULL,
+  `academic_year` varchar(255) DEFAULT NULL,
+  `admission_date` date DEFAULT NULL,
+  `current_year` varchar(10) DEFAULT NULL,
+  `admission_type` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `staffs`
+-- Dumping data for table `student_admission_details`
 --
 
-LOCK TABLES `staffs` WRITE;
-/*!40000 ALTER TABLE `staffs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `staffs` ENABLE KEYS */;
+LOCK TABLES `student_admission_details` WRITE;
+/*!40000 ALTER TABLE `student_admission_details` DISABLE KEYS */;
+INSERT INTO `student_admission_details` VALUES ('23EE139','SJCE','B.E','B.E Electrical and Electronics Engineering','2023-2024','2025-2026','2023-09-10','III','Management');
+/*!40000 ALTER TABLE `student_admission_details` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
